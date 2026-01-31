@@ -1,7 +1,6 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Montserrat } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
@@ -20,7 +19,6 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Adorne Semijoias | Elegância que brilha em você',
   description: 'Descubra semijoias exclusivas com banho de ouro 18k. Anéis, brincos, colares e pulseiras para realçar sua beleza. Compre pelo WhatsApp.',
-  generator: 'v0.app',
   keywords: ['semijoias', 'joias', 'brincos', 'colares', 'anéis', 'pulseiras', 'ouro 18k', 'antialérgico'],
   openGraph: {
     title: 'Adorne Semijoias | Elegância que brilha em você',
@@ -44,7 +42,6 @@ export default function RootLayout({
       <body className={`${montserrat.variable} ${cormorant.variable} font-sans antialiased`}>
         {children}
         <Toaster />
-        <Analytics />
       </body>
     </html>
   )
