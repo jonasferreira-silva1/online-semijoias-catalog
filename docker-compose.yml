@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: adornesemijoias-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-adorne}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-adornesemijoias2024}
+      POSTGRES_DB: ${DB_NAME:-adornesemijoias}
+      # Garantir que o banco seja criado
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=pt_BR.UTF-8"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database/01-init-db.sh:/docker-entrypoint-initdb.d/01-init-db.sh
+      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/02-init-schema.sql:ro
+    networks:
+      - adornesemijoias-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-adorne} -d ${DB_NAME:-adornesemijoias}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: adornesemijoias-backend
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: ${BACKEND_PORT:-3001}
+      DATABASE_URL: postgresql://${DB_USER:-adorne}:${DB_PASSWORD:-adornesemijoias2024}@postgres:5432/${DB_NAME:-adornesemijoias}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-adornesemijoias2024}
+      CORS_ORIGIN: http://localhost:3000
+    ports:
+      - "${BACKEND_PORT:-3001}:3001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - backend_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - adornesemijoias-network
+    restart: unless-stopped
+
+  # Frontend Next.js
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: adornesemijoias-frontend
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      NEXT_PUBLIC_API_URL: http://localhost:${BACKEND_PORT:-3001}
+      NEXT_PUBLIC_WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-5581995254025}
+      NEXT_PUBLIC_SITE_URL: ${SITE_URL:-http://localhost:3000}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    working_dir: /app
+    depends_on:
+      - backend
+    networks:
+      - adornesemijoias-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  backend_uploads:
+    driver: local
+
+networks:
+  adornesemijoias-network:
+    driver: bridge
+

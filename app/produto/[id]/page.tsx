@@ -72,24 +72,24 @@ export default function ProductPage() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <div className="container px-4 py-6">
+        <div className="container px-3 sm:px-4 py-4 sm:py-6">
           <Button
             asChild
             variant="ghost"
             size="sm"
-            className="mb-4 gap-2 text-muted-foreground hover:text-foreground"
+            className="mb-3 sm:mb-4 gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground"
           >
             <Link href="/">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
               Voltar ao catálogo
             </Link>
           </Button>
 
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
             {/* Image Gallery */}
             <div className="relative">
-              <div className="sticky top-20">
-                <div className="relative aspect-square overflow-hidden rounded-3xl bg-secondary/30">
+              <div className="sticky top-16 sm:top-20">
+                <div className="relative aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-secondary/30">
                   <Image
                     src={product.images[0] || "/placeholder.svg"}
                     alt={product.name}
@@ -124,16 +124,16 @@ export default function ProductPage() {
 
             {/* Product Info */}
             <div className="flex flex-col">
-              <h1 className="font-serif text-2xl font-semibold text-foreground md:text-3xl lg:text-4xl">
+              <h1 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground">
                 {product.name}
               </h1>
 
-              <div className="mt-4 flex items-baseline gap-3">
-                <span className="text-3xl font-bold text-primary md:text-4xl">
+              <div className="mt-3 sm:mt-4 flex items-baseline gap-2 sm:gap-3">
+                <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
                   {formatPrice(product.price)}
                 </span>
                 {product.originalPrice && (
-                  <span className="text-lg text-muted-foreground line-through">
+                  <span className="text-base sm:text-lg text-muted-foreground line-through">
                     {formatPrice(product.originalPrice)}
                   </span>
                 )}
@@ -148,11 +148,11 @@ export default function ProductPage() {
                 </Badge>
               )}
 
-              <p className="mt-6 text-pretty leading-relaxed text-muted-foreground">
+              <p className="mt-4 sm:mt-6 text-sm sm:text-base text-pretty leading-relaxed text-muted-foreground">
                 {product.description}
               </p>
 
-              <div className="mt-6 space-y-3">
+              <div className="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
                 <div className="flex items-center gap-2 text-sm">
                   <Check className="h-4 w-4 text-primary" />
                   <span>{product.material}</span>
@@ -171,12 +171,12 @@ export default function ProductPage() {
                 </div>
               </div>
 
-              <div className="mt-8 space-y-3">
-                <WhatsAppButton product={product} className="w-full py-4 text-lg" />
+              <div className="mt-6 sm:mt-8 space-y-3">
+                <WhatsAppButton product={product} className="w-full py-3 sm:py-4 text-sm sm:text-lg" />
                 <ShareButtons product={product} />
               </div>
 
-              <div className="mt-8 grid gap-4 rounded-2xl bg-secondary/30 p-4 sm:grid-cols-3">
+              <div className="mt-6 sm:mt-8 grid gap-3 sm:gap-4 rounded-xl sm:rounded-2xl bg-secondary/30 p-3 sm:p-4 sm:grid-cols-3">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                     <Truck className="h-5 w-5 text-primary" />

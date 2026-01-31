@@ -8,14 +8,14 @@ import { categories } from '@/lib/products'
 export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="container px-4 py-12">
-        <div className="grid gap-10 md:grid-cols-4">
+      <div className="container px-4 sm:px-6 py-8 sm:py-12">
+        <div className="grid gap-8 sm:gap-10 grid-cols-2 md:grid-cols-4">
           {/* Institucional */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground">
               Institucional
             </h3>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-2 sm:gap-3">
               <Link href="/sobre" className="text-sm text-muted-foreground transition-colors hover:text-primary">
                 Sobre a Adorne
               </Link>
@@ -42,11 +42,11 @@ export function Footer() {
           </div>
 
           {/* Categorias */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground">
               Categorias
             </h3>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-2 sm:gap-3">
               {categories.map((category) => (
                 <Link
                   key={category.id}
@@ -60,11 +60,11 @@ export function Footer() {
           </div>
 
           {/* Atendimento */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground">
               Atendimento
             </h3>
-            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+            <div className="flex flex-col gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
               <p>Nosso atendimento é de:</p>
               <p>Segunda à Sexta das 08:00 às 18:00</p>
               <Link 
@@ -86,11 +86,11 @@ export function Footer() {
           </div>
 
           {/* Redes Sociais */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground">
               Fique Conectado
             </h3>
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <Link
                 href="https://instagram.com/adornesemijoias"
                 target="_blank"
@@ -121,22 +121,22 @@ export function Footer() {
             </div>
             
             {/* Logo */}
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <Image
                 src="/logo.png"
                 alt="Adorne Semijoias"
-                width={80}
-                height={80}
-                className="object-contain opacity-80"
+                width={60}
+                height={60}
+                className="object-contain opacity-80 sm:w-20 sm:h-20"
               />
             </div>
           </div>
         </div>
 
         {/* Payment Methods */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 border-t border-border pt-8 md:justify-start">
+        <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 border-t border-border pt-6 sm:pt-8 md:justify-start">
           <span className="text-xs text-muted-foreground">Formas de pagamento:</span>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <div className="flex h-8 items-center rounded bg-secondary px-3 text-xs font-medium text-muted-foreground">
               PIX
             </div>

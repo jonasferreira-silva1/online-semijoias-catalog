@@ -60,27 +60,27 @@ export default function CategoryPage() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <div className="container px-4 py-6">
+        <div className="container px-3 sm:px-4 py-4 sm:py-6">
           <Button
             asChild
             variant="ghost"
             size="sm"
-            className="mb-4 gap-2 text-muted-foreground hover:text-foreground"
+            className="mb-3 sm:mb-4 gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground"
           >
             <Link href="/">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
               Voltar ao catálogo
             </Link>
           </Button>
 
-          <div className="mb-8">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">{category.icon}</span>
+          <div className="mb-6 sm:mb-8">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-3xl sm:text-4xl">{category.icon}</span>
               <div>
-                <h1 className="font-serif text-2xl font-semibold text-foreground md:text-3xl">
+                <h1 className="font-serif text-xl sm:text-2xl md:text-3xl font-semibold text-foreground">
                   {category.name}
                 </h1>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   {products.length}{" "}
                   {products.length === 1 ? "peça encontrada" : "peças encontradas"}
                 </p>
@@ -89,7 +89,7 @@ export default function CategoryPage() {
           </div>
 
           {products.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

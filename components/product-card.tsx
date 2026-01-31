@@ -28,30 +28,30 @@ export function ProductCard({ product, className }: ProductCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
-        <div className="absolute left-2 top-2 flex flex-col gap-1">
+        <div className="absolute left-1.5 top-1.5 sm:left-2 sm:top-2 flex flex-col gap-1">
           {product.isNew && (
-            <Badge className="bg-primary text-primary-foreground">Novo</Badge>
+            <Badge className="bg-primary text-primary-foreground text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">Novo</Badge>
           )}
           {product.isPromo && (
-            <Badge className="bg-accent text-accent-foreground">Promo</Badge>
+            <Badge className="bg-accent text-accent-foreground text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">Promo</Badge>
           )}
           {product.isBestseller && (
-            <Badge variant="outline" className="border-primary/30 bg-background/80 text-primary backdrop-blur-sm">
+            <Badge variant="outline" className="border-primary/30 bg-background/80 text-primary backdrop-blur-sm text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5">
               Mais Vendido
             </Badge>
           )}
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-1 p-3">
-        <h3 className="line-clamp-2 text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+      <div className="flex flex-1 flex-col gap-1 p-2 sm:p-3">
+        <h3 className="line-clamp-2 text-xs sm:text-sm font-medium text-foreground transition-colors group-hover:text-primary">
           {product.name}
         </h3>
-        <div className="mt-auto flex items-baseline gap-2">
-          <span className="text-base font-semibold text-primary">
+        <div className="mt-auto flex items-baseline gap-1 sm:gap-2">
+          <span className="text-sm sm:text-base font-semibold text-primary">
             {formatPrice(product.price)}
           </span>
           {product.originalPrice && (
-            <span className="text-xs text-muted-foreground line-through">
+            <span className="text-[10px] sm:text-xs text-muted-foreground line-through">
               {formatPrice(product.originalPrice)}
             </span>
           )}

@@ -69,20 +69,20 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-0">
-        <DialogHeader className="border-b border-border px-6 py-4">
-          <DialogTitle className="text-lg font-semibold">Buscar produtos</DialogTitle>
+      <DialogContent className="max-w-2xl p-0 sm:max-w-2xl">
+        <DialogHeader className="border-b border-border px-4 sm:px-6 py-3 sm:py-4">
+          <DialogTitle className="text-base sm:text-lg font-semibold">Buscar produtos</DialogTitle>
         </DialogHeader>
         
-        <div className="px-6 pt-4">
+        <div className="px-4 sm:px-6 pt-3 sm:pt-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Digite o nome, descrição ou categoria do produto..."
+              placeholder="Digite o nome, descrição ou categoria..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-10"
+              className="pl-10 pr-10 text-sm sm:text-base"
               autoFocus
             />
             {searchQuery && (
@@ -98,7 +98,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
           </div>
         </div>
 
-        <div className="max-h-[60vh] overflow-y-auto px-6 pb-6">
+        <div className="max-h-[50vh] sm:max-h-[60vh] overflow-y-auto px-4 sm:px-6 pb-4 sm:pb-6">
           {searchQuery.trim() ? (
             filteredProducts.length > 0 ? (
               <div className="mt-4 space-y-2">
